@@ -1,0 +1,27 @@
+<h2>Search for Character by id</h2>
+
+<%= form_with(url: "/show", method: "get", local: true) do %>
+  <%= label_tag(:id, "Enter Character Id:") %>
+  <%= text_field_tag(:id) %>
+  <%= submit_tag("Search") %>
+<% end %>
+
+<h2>Lists of Character</h2>
+
+<table class="table table-inverse">
+  <thead>
+    <tr>
+      <th>Character Name</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <%= @characters.each do |character| %>
+      <tr>
+        <td><%= character.name %></td>
+        <td><%= character.description %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= will_paginate @characters, :page_links => false %>
